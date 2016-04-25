@@ -22,16 +22,40 @@ var profiles = [
 ];
 
 module.exports = {
-  profile: function(res, req, next) {
+  profile: function(req, res, next) {
+    console.log('why hello there');
+    console.log(req.session);
     var profileFriends = [];
     var friendsArray = req.session.currentUser.friends;
     for (var i = 0; i < friendsArray.length; i++) {
-      profileFriends.push(friendsArray[i]);
+      for (var j = 0; j < profiles.length; j++) {
+        if(friendsArray[i] === profiles[j].name){
+          profileFriends.push(profiles[j]);
+        }
+      }
     }
     res.send({
       currentUser: req.session.currentUser,
       friends: profileFriends
     });
   }
-
 };
+
+// Nick Mariucci's code using the forEach method vs. 2 for loops:
+// module.exports = {
+//   profile: function(req,res,next){
+//     var friendsArray = [];
+//     console.log(req.session.currentUser);
+//     req.session.currentUser.friends.forEach(function(friend){
+//       profiles.forEach(function(profile){
+//         if (friend === profile.name) {
+//           friendsArray.push(profile);
+//         }
+//       });
+//     });
+//     res.send({
+//       currentUser: req.session.currentUser,
+//       friends: friendsArray
+//     });
+//   }
+// };

@@ -1,5 +1,5 @@
 angular.module('userProfiles')
-.controller('profileCtrl', function($scope, $stateProvider) {
-	$scope.currentUser = $stateProvider.resolve.currentUser();
-	$scope.friends = $stateProvider.resolve.userInfo();
+.controller('profileCtrl', function($scope, userInfo) {
+	$scope.currentUser = userInfo.currentUser;
+	$scope.friends = userInfo.friends;
 });
