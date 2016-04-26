@@ -4,8 +4,8 @@ angular.module('userProfiles')
   this.login = function(user){
     return $http({
       method: 'POST',
-      data: user,
-      url: '/api/login'
+      url: '/api/login',
+      data: user
     });
   };
 
@@ -13,10 +13,10 @@ angular.module('userProfiles')
     return $http({
       method: 'GET',
       url: '/api/profiles'
-    })
-      .then(function(response){   //Why do I have to parse the data with a .then here when console logging still gives the data? Is it in a different data format structure without a .then?
-        return response.data;     //Do all GET's require a .then? Can I just use the .then in the controller instead? (Which wont even matter once controllers are deprecated in 2.0).
-      });
+    });
+      // .then(function(response){  //Could optionally use a .then here to parse the config & headers from the incoming server data which is unnecessary extraneous data for our front end app.
+      //   return response.data;    //response.data contains the server data we want.
+      // });
   };
 
 });

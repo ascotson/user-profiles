@@ -23,8 +23,6 @@ var profiles = [
 
 module.exports = {
   profile: function(req, res, next) {
-    console.log('why hello there');
-    console.log(req.session);
     var profileFriends = [];
     var friendsArray = req.session.currentUser.friends;
     for (var i = 0; i < friendsArray.length; i++) {
